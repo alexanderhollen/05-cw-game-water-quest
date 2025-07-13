@@ -1,6 +1,17 @@
+// Difficulty settings
+const difficultySettings = {
+  Easy:   { GOAL_CANS: 15, GAME_TIME: 40, spawnSpeed: 1200 },
+  Normal: { GOAL_CANS: 25, GAME_TIME: 30, spawnSpeed: 900 },
+  Hard:   { GOAL_CANS: 35, GAME_TIME: 20, spawnSpeed: 700 }
+};
+
+let GOAL_CANS = difficultySettings.Normal.GOAL_CANS;
+let GAME_TIME = difficultySettings.Normal.GAME_TIME;
+let spawnSpeed = difficultySettings.Normal.spawnSpeed;
+
 // Game configuration and state variables
-const GOAL_CANS = 25;        // Total items needed to collect
-const GAME_TIME = 30;        // Game duration in seconds
+const DEFAULT_GOAL_CANS = 25;        // Total items needed to collect
+const DEFAULT_GAME_TIME = 30;        // Game duration in seconds
 let currentCans = 0;         // Current number of items collected
 let gameActive = false;      // Tracks if game is currently running
 let spawnInterval;           // Holds the interval for spawning items
@@ -25,7 +36,6 @@ function createGrid() {
 createGrid();
 
 let cansPerSpawn = 1;
-let spawnSpeed = 900; // ms
 let difficultyInterval;
 
 // Spawns a new item in a random grid cell
@@ -133,10 +143,16 @@ function increaseDifficulty() {
 // Initializes and starts a new game
 function startGame() {
   if (gameActive) return;
+  // Get selected difficulty
+  const selected = document.getElementById('difficulty-selector').value;
+  const settings = difficultySettings[selected];
+  GOAL_CANS = settings.GOAL_CANS;
+  GAME_TIME = settings.GAME_TIME;
+  spawnSpeed = settings.spawnSpeed;
+
   gameActive = true;
   currentCans = 0;
   cansPerSpawn = 1;
-  spawnSpeed = 900;
   updateScore();
   createGrid();
   document.getElementById('achievements').textContent = '';

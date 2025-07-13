@@ -5,12 +5,19 @@
   <meta name="viewport" content="width=device-width">
   <title>Water Quest</title>
   <link href="style.css" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="container">
     <img src="img/cw_logo_horizontal.png" alt="charity: water logo" style="display:block; margin: 0 auto 10px; max-width: 220px;">
     <h1>Water Quest</h1>
     <p class="game-instructions">Collect 20 items to complete the game!</p>
+    <label for="difficulty-selector" style="font-weight:bold;">Difficulty:</label>
+    <select id="difficulty-selector">
+      <option value="Easy">Easy</option>
+      <option value="Normal" selected>Normal</option>
+      <option value="Hard">Hard</option>
+    </select>
     <div class="stats">
       <p>Cans Collected: <span id="current-cans">0</span></p>
       <p>Time Left: <span id="timer">30</span>s</p>
@@ -19,6 +26,15 @@
     <div class="game-grid"></div>
     <button id="start-game">Start Game</button>
   </div>
+  <footer style="text-align:center; margin-top:2em; font-family:'Montserrat', Arial, sans-serif;">
+    <a href="https://www.charitywater.org/" target="_blank" style="color:#4FCB53; font-weight:bold;">
+      Learn more at charity: water
+    </a>
+    &nbsp;|&nbsp;
+    <a href="https://www.charitywater.org/donate" target="_blank" style="color:#4FCB53; font-weight:bold;">
+      Donate
+    </a>
+  </footer>
   <script src="script.js"></script>
 </body>
 </html>
